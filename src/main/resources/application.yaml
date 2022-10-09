@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+mysql:
+  url: jdbc:mysql://rm-2zeill7d837f111yi1o.mysql.rds.aliyuncs.com:3306/
+  user: root
+  password: Abcde135790
+  database: fcruddb
+  EULA: ?useSSL=false
+
+
