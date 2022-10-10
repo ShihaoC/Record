@@ -26,12 +26,15 @@ public class Msg implements Runnable{
                     }
                     break;
                 case "interfaces":
-                    logger.info("\n登录 - login - get \n" +
-                            "获取考勤信息 - getMapping - get \n" +
-                            "删除考勤信息 - delete - get \n" +
-                            "添加考勤信息 - insert - get \n" +
-                            "添加员工信息 - addStaff - get\n" +
-                            "获取员工对象集合 - getStaffs - get");
+                    logger.info("\n" +
+                            "============================================================\n"+
+                            "\t\t登录 - /sys-user/login - get \n" +
+                            "\t\t获取考勤信息 - /sys-employee/getMapping - get \n" +
+                            "\t\t删除考勤信息 - /sys-employee/delete - get \n" +
+                            "\t\t添加考勤信息 - /sys-employee/insert - get \n" +
+                            "\t\t添加员工信息 - /sys-employee/addStaff - get\n" +
+                            "\t\t获取员工对象集合 - /sys-employee/getStaffs - get\n"+
+                            "============================================================");
                     break;
                 default:
                     logger.error("未知命令");
