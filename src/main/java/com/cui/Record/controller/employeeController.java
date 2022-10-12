@@ -49,9 +49,14 @@ public class employeeController {
         }
     }
     @GetMapping("addStaff")
-    public int addStaff(String name){
+    public String addStaff(String name){
         logger.info("添加员工"+name);
-        return staffService.insertStaff(Long.parseLong(staffService.getId()), name);
+        int result = staffService.insertStaff(Long.parseLong(staffService.getId()), name);
+        if(result != 0){
+            return Status.PASS.toString();
+        }else {
+            return Status.STAFF_IS_EXISTS.toString();
+        }
     }
     @GetMapping("getStaffs")
     public List<Staff> getList(){

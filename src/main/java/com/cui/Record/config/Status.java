@@ -8,4 +8,5 @@ public enum Status {
     //增删改出错
     NOT_FOUND_STAFF, //没有找到员工
 
+    STAFF_IS_EXISTS //员工已经存在
 }

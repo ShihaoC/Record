@@ -3,6 +3,7 @@
     <div class="btn-box">
       <el-button type="primary" plain @click="addView()">添加信息</el-button>
       <el-button type="primary" plain @click="query()">查询信息</el-button>
+      <el-button type="primary" plain @click="addStaff()">添加员工</el-button>
     </div>
     <div class="search">
       <el-select v-model="staff" placeholder="请选择员工" style="width: 100%">
@@ -52,6 +53,20 @@
         <el-form-item>
           <el-button style="width: 40%" type="primary" @click="insert()">提交</el-button>
           <el-button style="width: 40%" type="primary" @click="hid()">取消</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div class="addStaffBox">
+      <el-form :model="addStaffForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form-item label="员工名称" prop="pass">
+          <el-input type="password" v-model="addStaffForm.EmName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="入职日期" prop="checkPass">
+          <el-date-picker type="date" placeholder="选择日期" v-model="addStaffForm.joinDate" style="width: 100%;"/>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="addStaff('ruleForm')">提交</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </div>

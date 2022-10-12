@@ -103,7 +103,18 @@ public class staffServiceImpl extends baseDao implements staffService {
     @Override
     public int insertStaff(long id,String name) {
         synchronized (this) {
-            return super.DML("insert into sys_staff(id,name) value(?,?)", new Object[]{id, name});
+            int result;
+            super.Query("select * from sys_staff",null);
+            try {
+                if(super.rs.next()){
+                    return 0;
+                }
+                result = super.DML("insert into sys_staff(id,name) value(?,?)", new Object[]{id, name});
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            return result;
         }
     }
 

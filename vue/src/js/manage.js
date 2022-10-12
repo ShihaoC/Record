@@ -53,6 +53,10 @@ export default {
                 logDate: '',
                 staff: ''
             },
+            addStaffForm:{
+                EmName: '',
+                joinDate: ''
+            },
             items: [],
             rules: {
                 staff: [
@@ -66,7 +70,7 @@ export default {
                 ]
             },
             sear: '',
-            staff: ''
+            staff: '',
         };
     },
     methods: {
@@ -85,7 +89,7 @@ export default {
             this.loading = true;
             console.log(row.name)
             console.log(row.date)
-            this.axios.get("http://127.0.0.1:8081/sys-employeedelete?date=" + row.date + "&name=" + row.name).then((resp) => {
+            this.axios.get("http://127.0.0.1:8081/sys-employee/delete?date=" + row.date + "&name=" + row.name+"&work="+row.work).then((resp) => {
                 if (resp.data === 'ERROR') {
                     this.$notify({
                         title: '错误',
@@ -136,7 +140,7 @@ export default {
                 })
             } else {
 
-                this.axios.get("http://127.0.0.1:8081/sys-employeeinsert?date=" + format.formatDate(this.ruleForm.logDate, "yyyy-MM-dd") + "&name=" + this.ruleForm.staff + "&work=" + this.ruleForm.num).then((resp) => {
+                this.axios.get("http://127.0.0.1:8081/sys-employee/insert?date=" + format.formatDate(this.ruleForm.logDate, "yyyy-MM-dd") + "&name=" + this.ruleForm.staff + "&work=" + this.ruleForm.num).then((resp) => {
                     this.$notify({
                         title: '添加成功',
                         message: '添加成功啦',
@@ -151,6 +155,9 @@ export default {
         },
         hid() {
             document.querySelector(".addBox").style.display = 'none'
+        },
+        resetForm(){
+            this.addStaffForm = []
         }
     },
 }
