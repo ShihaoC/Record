@@ -1,0 +1,12 @@
+2022-10-12 11:36:18  [ main:0 ] - [ INFO ]  创建用户输入信息线程
+2022-10-12 11:36:18  [ main:2 ] - [ INFO ]  用户输入信息线程启动成功
+2022-10-12 11:36:18  [ main:2 ] - [ INFO ]  启动SpringBoot应用程序
+2022-10-12 11:36:22  [ 信息:3817 ] - [ INFO ]  
+============================================================
+		登录 - /sys-user/login - get 
+		获取考勤信息 - /sys-employee/getMapping - get 
+		删除考勤信息 - /sys-employee/delete - get 
+		添加考勤信息 - /sys-employee/insert - get 
+		添加员工信息 - /sys-employee/addStaff - get
+		获取员工对象集合 - /sys-employee/getStaffs - get
+============================================================

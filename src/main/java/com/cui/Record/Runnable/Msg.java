@@ -36,6 +36,13 @@ public class Msg implements Runnable{
                             "\t\t获取员工对象集合 - /sys-employee/getStaffs - get\n"+
                             "============================================================");
                     break;
+                case "help":
+                case "HELP":
+                case "Help":
+                    logger.info("\n" +
+                            "stop/quit/exit 退出Java虚拟机\n" +
+                            "interfaces 查看所有HTTP接口");
+                    break;
                 default:
                     logger.error("未知命令");
                     break;
