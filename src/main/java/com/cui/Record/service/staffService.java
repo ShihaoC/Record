@@ -8,11 +8,11 @@ import java.util.List;
 public interface staffService {
     List<recordE> getList(String str);
 
-    int delete(String name,String date,long work);
+    int delete(String name, String date, long work);
 
-    int insert(String name,String date,int work);
+    int insert(String name, String date, int work);
 
     List<Staff> getStaffs();
 
-    int insertStaff(long id,String name);
+    int insertStaff(long id, String name);
 }

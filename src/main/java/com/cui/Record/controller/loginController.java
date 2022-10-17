@@ -19,13 +19,14 @@ public class loginController {
     Logger logger = Logger.getLogger(loginController.class);
     @Resource
     private userServiceImpl service; //创建userServiceImpl对象
+
     @GetMapping("login")
-    public String login(String name,String password){
+    public String login(String name, String password) {
         logger.info("加载登录接口");
         user login = service.login(name, password);
-        if(login == null){
+        if (login == null) {
             return Status.PASSWORD_ERROR.toString();
-        }else {
+        } else {
             return Status.PASS.toString();
         }
     }
