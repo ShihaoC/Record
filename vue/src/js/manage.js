@@ -49,8 +49,8 @@ export default {
             search: '',
             loading: true,
             ruleForm: {
-                num: '',
-                logDate: '',
+                num: 1,
+                logDate: new Date(),
                 staff: ''
             },
             addStaffForm:{
@@ -58,6 +58,8 @@ export default {
                 joinDate: ''
             },
             items: [],
+            dialogFormVisible: false,
+            formLabelWidth: '90px',
             rules: {
                 staff: [
                     { validator: staff, trigger: 'blur' }
@@ -118,7 +120,7 @@ export default {
 
         },
         addView() {
-            document.querySelector(".addBox").style.display = 'block'
+            this.dialogFormVisible = true;
         },
         insert() {
             console.log(1)
@@ -139,15 +141,14 @@ export default {
                     type: "warning"
                 })
             } else {
-
                 this.axios.get("http://127.0.0.1:8081/sys-employee/insert?date=" + format.formatDate(this.ruleForm.logDate, "yyyy-MM-dd") + "&name=" + this.ruleForm.staff + "&work=" + this.ruleForm.num).then((resp) => {
+                    this.dialogFormVisible = false;
                     this.$notify({
                         title: '添加成功',
                         message: '添加成功啦',
                         type: "success"
                     })
-                    document.querySelector(".addBox").style.display = 'none'
-                    this.query();
+                    this.query()
                 }).catch((err) => {
                     console.log("error")
                 })

@@ -6,10 +6,10 @@
         <el-input v-model="loginForm.name" placeholder="账号"></el-input>
       </el-form-item>
       <el-form-item label="" prop="password">
-        <el-input type="password" v-model="loginForm.password" placeholder="密码"></el-input>
+        <el-input type="password" v-model="loginForm.password" placeholder="密码" ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" v-on:click="Login()" style="width: 70%">登录</el-button>
+        <el-button type="primary" v-on:click="Login()" @keyup.enter="Login()" style="width: 70%">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
