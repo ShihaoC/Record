@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cui.Record.Mapper.RecordMapper">
+    <select id="getList" resultType="com.cui.Record.entity.Bookkeeping">
+        select * from sys_record
+    </select>
+
+    <select id="getSimple" resultType="com.cui.Record.entity.Bookkeeping">
+        select * from sys_record where name = #{name}
+    </select>
+
+    <delete id="remove">
+        delete from sys_record where id=#{id}
+    </delete>
+
+    <insert id="insert">
+        insert into sys_record(date, name, work) VALUES(#{date},#{name},#{work})
+    </insert>
+
+    <update id="update">
+        update sys_record set date = #{date},work = #{work} where id = #{id}
+    </update>
+</mapper>

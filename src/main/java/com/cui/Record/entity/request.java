@@ -3,16 +3,12 @@ package com.cui.Record.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Component
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Staff {
-    private long id;
-    private String name;
+public class request<T> {
+    private T t;
 
-    private String date;
 
 }

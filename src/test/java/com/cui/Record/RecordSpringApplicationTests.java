@@ -1,13 +1,10 @@
 package com.cui.Record;
 
-import com.cui.Record.config.SQLConfig;
-import com.cui.Record.dao.baseDao;
-import com.cui.Record.entity.recordE;
-import com.cui.Record.service.impl.staffServiceImpl;
-import com.cui.Record.service.staffService;
+import com.cui.Record.Mapper.StaffMapper;
+import com.cui.Record.util.MybatisHelp;
+import com.cui.Record.entity.Staff;
+import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -17,6 +14,12 @@ class RecordSpringApplicationTests {
 
 	@Test
 	void contextLoads() {
+		SqlSession session = MybatisHelp.getSession();
+		List<Staff> staffList = session.getMapper(StaffMapper.class).selectAll();
+		for (Staff s :
+				staffList) {
+			System.out.println(s);
+		}
 	}
 
 }

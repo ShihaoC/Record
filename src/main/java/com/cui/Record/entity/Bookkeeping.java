@@ -9,10 +9,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Staff {
-    private long id;
-    private String name;
-
+public class Bookkeeping {
     private String date;
-
+    private String name;
+    private double work;
+    private int id;
 }

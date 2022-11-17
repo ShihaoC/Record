@@ -1,9 +1,13 @@
 import format from "@/js/format";
-
+import fa from "element-ui/src/locale/lang/fa";
+import axios from "axios";
+let newAxios = axios.create({
+    baseURL: 'http://localhost:8081'
+})
 export default {
     name: 'Manage',
     created() {
-        this.axios.get("http://127.0.0.1:8081/sys-employee/getMapping?str=all").then((resp) => {
+        newAxios.get("/sys-employee/getMapping?str=all").then((resp) => {
             this.tableData = resp.data;
             this.loading = false
         }).catch((err) => {
@@ -14,7 +18,7 @@ export default {
             })
             this.loading = false
         })
-        this.axios.get("http://127.0.0.1:8081/sys-employee/getStaffs").then((resp) => {
+        newAxios.get("/sys-employee/getStaffs").then((resp) => {
             let arr = [];
             for (let i = 0; i < resp.data.length; i++) {
                 arr[i] = resp.data[i].name;
@@ -60,6 +64,13 @@ export default {
             items: [],
             dialogFormVisible: false,
             formLabelWidth: '90px',
+            updateDialog: false,
+            updateForm: {
+                num: 1,
+                logDate: new Date(),
+                staff: ''
+            },
+            temp: '',
             rules: {
                 staff: [
                     { validator: staff, trigger: 'blur' }
@@ -78,7 +89,7 @@ export default {
     methods: {
         getDate(str) {
             this.loading = 'true'
-            this.axios.get("http://127.0.0.1:8081/sys-employee/getMapping?str=" + (str === '' ? "all" : str)).then((resp) => {
+            newAxios.get("/sys-employee/getMapping?str=" + (str === '' ? "all" : str)).then((resp) => {
                 this.tableData = resp.data;
                 this.loading = false
             })
@@ -86,12 +97,15 @@ export default {
         },
         handleEdit(index, row) {
             console.log(index, row);
+            this.temp = row
+            this.updateDialog = true
+            this.updateForm.staff = row.name
         },
         handleDelete(index, row) {
             this.loading = true;
             console.log(row.name)
             console.log(row.date)
-            this.axios.get("http://127.0.0.1:8081/sys-employee/delete?date=" + row.date + "&name=" + row.name+"&work="+row.work).then((resp) => {
+            newAxios.get("/sys-employee/delete?id="+row.id).then((resp) => {
                 if (resp.data === 'ERROR') {
                     this.$notify({
                         title: '错误',
@@ -104,7 +118,8 @@ export default {
                     this.$notify({
                         title: '删除成功',
                         message: '删除成功啦',
-                        type: "success"
+                        type: "success",
+                        position: 'bottom-left'
                     })
                     this.query()
                 }
@@ -141,7 +156,7 @@ export default {
                     type: "warning"
                 })
             } else {
-                this.axios.get("http://127.0.0.1:8081/sys-employee/insert?date=" + format.formatDate(this.ruleForm.logDate, "yyyy-MM-dd") + "&name=" + this.ruleForm.staff + "&work=" + this.ruleForm.num).then((resp) => {
+                newAxios.get("/sys-employee/insert?date=" + format.formatDate(this.ruleForm.logDate, "yyyy-MM-dd") + "&name=" + this.ruleForm.staff + "&work=" + this.ruleForm.num).then((resp) => {
                     this.dialogFormVisible = false;
                     this.$notify({
                         title: '添加成功',
@@ -154,11 +169,26 @@ export default {
                 })
             }
         },
-        hid() {
-            document.querySelector(".addBox").style.display = 'none'
-        },
-        resetForm(){
-            this.addStaffForm = []
+        update(){
+            this.updateForm.staff = this.temp.name
+            newAxios.post("http://localhost:8081/sys-employee/updateStaff",{
+                date: format.formatDate(this.updateForm.logDate),
+                name: this.updateForm.staff,
+                work: this.updateForm.num,
+                id: this.temp.id
+            }).then((resp)=>{
+                if(resp.data == 'PASS'){
+                    this.$notify({
+                        title: '修改成功',
+                        message: 'PASS',
+                        type: 'success',
+                        position: 'bottom-left'
+                    })
+                    this.updateDialog = false
+                    this.getDate("all")
+                    this.temp = ''
+                }
+            })
         }
     },
 }

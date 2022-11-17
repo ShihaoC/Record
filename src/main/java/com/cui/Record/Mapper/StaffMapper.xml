@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cui.Record.Mapper.StaffMapper">
+    <select id="selectAll" resultType="com.cui.Record.entity.Staff">
+        select * from sys_staff
+    </select>
+
+    <insert id="insert">
+        insert into sys_staff(id, name, date) values(#{id},#{name},#{date})
+    </insert>
+
+    <delete id="delete">
+        delete from sys_staff where id = #{id}
+    </delete>
+
+    <update id="update">
+        update sys_staff set name = #{name},date = #{date} where id = #{id}
+    </update>
+</mapper>
