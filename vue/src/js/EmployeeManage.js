@@ -1,7 +1,7 @@
 import format from "@/js/format";
 import axios from "axios";
 let newAxios = axios.create({
-    baseURL: 'http://localhost:8081'
+    baseURL: 'http://101.42.176.62:8081/'
 })
 export default {
     name: 'EmployeeManage',

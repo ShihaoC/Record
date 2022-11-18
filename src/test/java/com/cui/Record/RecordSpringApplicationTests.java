@@ -14,12 +14,7 @@ class RecordSpringApplicationTests {
 
 	@Test
 	void contextLoads() {
-		SqlSession session = MybatisHelp.getSession();
-		List<Staff> staffList = session.getMapper(StaffMapper.class).selectAll();
-		for (Staff s :
-				staffList) {
-			System.out.println(s);
-		}
+
 	}
 
 }

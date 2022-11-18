@@ -6,7 +6,7 @@
         <el-input v-model="loginForm.name" placeholder="账号"></el-input>
       </el-form-item>
       <el-form-item label="" prop="password">
-        <el-input type="password" v-model="loginForm.password" placeholder="密码" ></el-input>
+        <el-input type="password" v-model="loginForm.password" placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" v-on:click="Login()" @keyup.enter="Login()" style="width: 70%">登录</el-button>
@@ -32,10 +32,10 @@ export default {
       },
       rules: {
         name: [
-          { validator: name }
+          {validator: name}
         ],
         password: [
-          { required: true, message: '请输入密码' }
+          {required: true, message: '请输入密码'}
         ]
       }
     }
@@ -52,7 +52,7 @@ export default {
         })
       } else {
         //通过Axios向后端发送get请求
-        this.$axios.get("http://127.0.0.1:8081/sys-user/login?name=" + this.loginForm.name + "&password=" + this.loginForm.password).then((resp) => {
+        this.$axios.get("http://101.42.176.62:8081/sys-user/login?name=" + this.loginForm.name + "&password=" + this.loginForm.password).then((resp) => {
           // resp.data 属性值为 PASS 登录成功，清空表单 跳转页面
           if (resp.data === "PASS") {
             this.$message({
@@ -60,7 +60,7 @@ export default {
               type: "success"
             })
             this.loginForm = []
-            this.$router.push({ path: '/manage' })
+            this.$router.push({path: '/manage'})
             // resp.data 属性值为 PASSWORD_ERROR 密码错误 清空密码
           } else if (resp.data === "PASSWORD_ERROR") {
             this.$notify({

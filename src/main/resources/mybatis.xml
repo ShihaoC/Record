@@ -8,14 +8,15 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://rm-2zeill7d837f111yi1o.mysql.rds.aliyuncs.com:3306/fcruddb?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf8"/>
+                <property name="url"
+                          value="jdbc:mysql://rm-2zeill7d837f111yi1o.mysql.rds.aliyuncs.com:3306/fcruddb?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="Abcde135790"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/cui/Record/Mapper/userMapper.xml"/>
+        <mapper resource="com/cui/Record/Mapper/UserMapper.xml"/>
         <mapper resource="com/cui/Record/Mapper/RecordMapper.xml"/>
         <mapper resource="com/cui/Record/Mapper/StaffMapper.xml"/>
     </mappers>

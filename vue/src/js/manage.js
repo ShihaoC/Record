@@ -1,8 +1,8 @@
 import format from "@/js/format";
-import fa from "element-ui/src/locale/lang/fa";
 import axios from "axios";
+
 let newAxios = axios.create({
-    baseURL: 'http://localhost:8081'
+    baseURL: 'http://101.42.176.62:8081/'
 })
 export default {
     name: 'Manage',
@@ -57,7 +57,7 @@ export default {
                 logDate: new Date(),
                 staff: ''
             },
-            addStaffForm:{
+            addStaffForm: {
                 EmName: '',
                 joinDate: ''
             },
@@ -73,13 +73,13 @@ export default {
             temp: '',
             rules: {
                 staff: [
-                    { validator: staff, trigger: 'blur' }
+                    {validator: staff, trigger: 'blur'}
                 ],
                 num: [
-                    { validator: num, trigger: 'blur' }
+                    {validator: num, trigger: 'blur'}
                 ],
                 logDate: [
-                    { validator: logDate, trigger: 'blur' }
+                    {validator: logDate, trigger: 'blur'}
                 ]
             },
             sear: '',
@@ -105,7 +105,7 @@ export default {
             this.loading = true;
             console.log(row.name)
             console.log(row.date)
-            newAxios.get("/sys-employee/delete?id="+row.id).then((resp) => {
+            newAxios.get("/sys-employee/delete?id=" + row.id).then((resp) => {
                 if (resp.data === 'ERROR') {
                     this.$notify({
                         title: '错误',
@@ -169,20 +169,20 @@ export default {
                 })
             }
         },
-        update(){
+        update() {
             this.updateForm.staff = this.temp.name
-            newAxios.post("http://localhost:8081/sys-employee/updateStaff",{
+            newAxios.post("http://localhost:8081/sys-employee/updateStaff", {
                 date: format.formatDate(this.updateForm.logDate),
                 name: this.updateForm.staff,
                 work: this.updateForm.num,
                 id: this.temp.id
-            }).then((resp)=>{
-                if(resp.data == 'PASS'){
+            }).then((resp) => {
+                if (resp.data == 'PASS') {
                     this.$notify({
                         title: '修改成功',
                         message: 'PASS',
                         type: 'success',
-                        position: 'bottom-left'
+                        position: 'bottom-right'
                     })
                     this.updateDialog = false
                     this.getDate("all")
